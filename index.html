@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewritter effect</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+    }
+    
+    
+</style>
+<body>
+    <p>I am a <span class="typeWEffect"></span></p>
+</body>
+<script>
+    // const phrases=["Student","Programmer","Developer"];
+    // const dynamicContent= document.querySelector(".typeWEffect");
+    // let phraseIndex=0;
+    // let letterIndex=0;
+    // function printLetters(phrase) {
+    //     if(letterIndex==phrase.length){
+    //         clearLetters();
+    //     }
+    //     else if(letterIndex<phrase.length){
+    //         dynamicContent.textContent+=phrase.charAt(letterIndex);
+    //         letterIndex++;
+            
+    //     }
+    // }
+    
+
+
+
+
+
+
+
+
+
+
+const words=["Student","Programmer","Developer"];
+const typeWEffect= document.querySelector(".typeWEffect");
+
+   let wIndex=0;
+   let cIndex=0;
+    function printLetters(word) {
+        if (cIndex==words[wIndex].length) {
+            popLetters(words[wIndex]);
+        }
+        else{
+            typeWEffect.textContent+=words[wIndex].charAt(cIndex);
+            cIndex++;
+            setTimeout(printLetters, 150);
+        }
+        
+    }
+    function popLetters(word) {
+        if(!(cIndex>-1)){
+            wIndex=(wIndex+1)%words.length;
+            printLetters(words[wIndex]);
+        }
+        else{
+            typeWEffect.textContent= typeWEffect.textContent.substring(0,--cIndex);
+            setTimeout(popLetters, 150);
+        }
+    }
+    printLetters(words[wIndex]);
+    
+   
+</script>
+</html>
